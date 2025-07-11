@@ -150,15 +150,9 @@ def display_chat_interface(user_question_output, response_output, conversation_h
             st.markdown(
                 f"""
                 <div class="chat-message user">
-                    <div class="avatar">
-                        <img src="https://i.ibb.co/CKpTnWr/user-icon-2048x2048-ihoxz4vq.png">
-                    </div>
                     <div class="message">{question}</div>
                 </div>
                 <div class="chat-message bot">
-                    <div class="avatar">
-                        <img src="https://i.ibb.co/wNmYHsx/langchain-logo.webp">
-                    </div>
                     <div class="message">{answer}</div>
                 </div>
                 """,
@@ -176,24 +170,18 @@ def display_chat_interface(user_question_output, response_output, conversation_h
 
 # Main Streamlit UI
 def main():
-    st.set_page_config(page_title="Chat with multiple PDFs", page_icon="📚")
-    st.header("Chat with multiple PDFs 📚")
+    st.set_page_config(page_title="Ask Any From PDFs", page_icon="📚")
+    st.header("Ask Any From PDFs 📚")
 
     if 'conversation_history' not in st.session_state:
         st.session_state.conversation_history = []
-
-    st.sidebar.markdown("""
-        [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/)
-        [![Kaggle](https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/)
-        [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/)
-    """)
 
     model_name = st.sidebar.radio("Select the Model:", ("Google AI",))
 
     api_key = None
     if model_name == "Google AI":
         api_key = st.sidebar.text_input("Enter your Google API Key:", type="password")
-        st.sidebar.markdown("Click [here](https://ai.google.dev/) to get an API key.")
+        st.sidebar.markdown("Click [here](https://ai.google.dev/) to get an API key. Tap anywhere to continue after API key input.")
         if not api_key:
             st.sidebar.warning("Please enter your Google API Key to proceed.")
             return
@@ -236,5 +224,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
